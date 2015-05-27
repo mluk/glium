@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ColorAttachment` enum in crate `glium`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ColorAttachment">
+
+    <title>glium::framebuffer::ColorAttachment - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>glium</a>::<wbr><a href='index.html'>framebuffer</a></p><script>window.sidebarCurrent = {name: 'ColorAttachment', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>glium</a>::<wbr><a href='index.html'>framebuffer</a>::<wbr><a class='enum' href=''>ColorAttachment</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-19084' href='../../src/glium/framebuffer/mod.rs.html#564-595'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum ColorAttachment&lt;'a&gt; {
+    Texture1d(<a class='struct' href='../../glium/texture/struct.Texture1dMipmap.html' title='glium::texture::Texture1dMipmap'>Texture1dMipmap</a>&lt;'a&gt;),
+    SrgbTexture1d(<a class='struct' href='../../glium/texture/struct.SrgbTexture1dMipmap.html' title='glium::texture::SrgbTexture1dMipmap'>SrgbTexture1dMipmap</a>&lt;'a&gt;),
+    Texture2d(<a class='struct' href='../../glium/texture/struct.Texture2dMipmap.html' title='glium::texture::Texture2dMipmap'>Texture2dMipmap</a>&lt;'a&gt;),
+    SrgbTexture2d(<a class='struct' href='../../glium/texture/struct.SrgbTexture2dMipmap.html' title='glium::texture::SrgbTexture2dMipmap'>SrgbTexture2dMipmap</a>&lt;'a&gt;),
+    Texture2dMultisample(<a class='struct' href='../../glium/texture/struct.Texture2dMultisampleMipmap.html' title='glium::texture::Texture2dMultisampleMipmap'>Texture2dMultisampleMipmap</a>&lt;'a&gt;),
+    SrgbTexture2dMultisample(<a class='struct' href='../../glium/texture/struct.SrgbTexture2dMultisampleMipmap.html' title='glium::texture::SrgbTexture2dMultisampleMipmap'>SrgbTexture2dMultisampleMipmap</a>&lt;'a&gt;),
+    Texture3d(<a class='struct' href='../../glium/texture/struct.Texture3dMipmap.html' title='glium::texture::Texture3dMipmap'>Texture3dMipmap</a>&lt;'a&gt;, <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    SrgbTexture3d(<a class='struct' href='../../glium/texture/struct.SrgbTexture3dMipmap.html' title='glium::texture::SrgbTexture3dMipmap'>SrgbTexture3dMipmap</a>&lt;'a&gt;, <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    Texture1dArray(<a class='struct' href='../../glium/texture/struct.Texture1dArrayMipmap.html' title='glium::texture::Texture1dArrayMipmap'>Texture1dArrayMipmap</a>&lt;'a&gt;),
+    SrgbTexture1dArray(<a class='struct' href='../../glium/texture/struct.SrgbTexture1dArrayMipmap.html' title='glium::texture::SrgbTexture1dArrayMipmap'>SrgbTexture1dArrayMipmap</a>&lt;'a&gt;),
+    Texture2dArray(<a class='struct' href='../../glium/texture/struct.Texture2dArrayMipmap.html' title='glium::texture::Texture2dArrayMipmap'>Texture2dArrayMipmap</a>&lt;'a&gt;),
+    SrgbTexture2dArray(<a class='struct' href='../../glium/texture/struct.SrgbTexture2dArrayMipmap.html' title='glium::texture::SrgbTexture2dArrayMipmap'>SrgbTexture2dArrayMipmap</a>&lt;'a&gt;),
+    Texture2dMultisampleArray(<a class='struct' href='../../glium/texture/struct.Texture2dMultisampleArrayMipmap.html' title='glium::texture::Texture2dMultisampleArrayMipmap'>Texture2dMultisampleArrayMipmap</a>&lt;'a&gt;),
+    SrgbTexture2dMultisampleArray(<a class='struct' href='../../glium/texture/struct.SrgbTexture2dMultisampleArrayMipmap.html' title='glium::texture::SrgbTexture2dMultisampleArrayMipmap'>SrgbTexture2dMultisampleArrayMipmap</a>&lt;'a&gt;),
+    RenderBuffer(&amp;'a <a class='struct' href='../../glium/framebuffer/struct.RenderBuffer.html' title='glium::framebuffer::RenderBuffer'>RenderBuffer</a>),
+}</pre><div class='docblock'><p>Describes an attachment for a color buffer.</p>
+</div><h2 class='variants'>Variants</h2>
+<table><tr><td id='variant.Texture1d'><a class='stability Unmarked' title='No stability level'></a><code>Texture1d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture1d'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture1d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture2d'><a class='stability Unmarked' title='No stability level'></a><code>Texture2d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture2d'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture2d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture2dMultisample'><a class='stability Unmarked' title='No stability level'></a><code>Texture2dMultisample</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture2dMultisample'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture2dMultisample</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture3d'><a class='stability Unmarked' title='No stability level'></a><code>Texture3d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture3d'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture3d</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture1dArray'><a class='stability Unmarked' title='No stability level'></a><code>Texture1dArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture1dArray'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture1dArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture2dArray'><a class='stability Unmarked' title='No stability level'></a><code>Texture2dArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture2dArray'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture2dArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.Texture2dMultisampleArray'><a class='stability Unmarked' title='No stability level'></a><code>Texture2dMultisampleArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.SrgbTexture2dMultisampleArray'><a class='stability Unmarked' title='No stability level'></a><code>SrgbTexture2dMultisampleArray</code></td><td><div class='docblock'><p>A texture.</p>
+</div></td></tr><tr><td id='variant.RenderBuffer'><a class='stability Unmarked' title='No stability level'></a><code>RenderBuffer</code></td><td><div class='docblock'><p>A render buffer.</p>
+</div></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../glium/framebuffer/enum.ColorAttachment.html' title='glium::framebuffer::ColorAttachment'>ColorAttachment</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.clone' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../glium/framebuffer/enum.ColorAttachment.html' title='glium::framebuffer::ColorAttachment'>ColorAttachment</a>&lt;'a&gt;</code></h4>
+<h4 id='method.clone_from' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='enum' href='../../glium/framebuffer/enum.ColorAttachment.html' title='glium::framebuffer::ColorAttachment'>ColorAttachment</a>&lt;'a&gt;</code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "glium";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

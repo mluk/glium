@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `IndexBuffer` struct in crate `glium`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, IndexBuffer">
+
+    <title>glium::IndexBuffer - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>glium</a></p><script>window.sidebarCurrent = {name: 'IndexBuffer', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>glium</a>::<wbr><a class='struct' href=''>IndexBuffer</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-19933' href='../src/glium/index/buffer.rs.html#20-23'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct IndexBuffer&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a></span> {
+    // some fields omitted
+}</pre><div class='docblock'><p>A list of indices loaded in the graphics card&#39;s memory.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;T&gt; <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a></span></code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>&lt;F, D&gt;(facade: &amp;F, prim: <a class='enum' href='../glium/index/enum.PrimitiveType.html' title='glium::index::PrimitiveType'>PrimitiveType</a>, data: D) -&gt; <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where F: <a class='trait' href='../glium/backend/trait.Facade.html' title='glium::backend::Facade'>Facade</a>, D: <a class='trait' href='http://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[T]</a>&gt;</span></code></h4>
+<div class='docblock'><p>Builds a new index buffer from a list of indices and a primitive type.</p>
+</div><h4 id='method.dynamic' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.dynamic' class='fnname'>dynamic</a>&lt;F, D&gt;(facade: &amp;F, prim: <a class='enum' href='../glium/index/enum.PrimitiveType.html' title='glium::index::PrimitiveType'>PrimitiveType</a>, data: D) -&gt; <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where F: <a class='trait' href='../glium/backend/trait.Facade.html' title='glium::backend::Facade'>Facade</a>, D: <a class='trait' href='http://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>[T]</a>&gt;</span></code></h4>
+<div class='docblock'><p>Builds a new index buffer from a list of indices and a primitive type.</p>
+</div><h4 id='method.empty' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.empty' class='fnname'>empty</a>&lt;F&gt;(facade: &amp;F, prim: <a class='enum' href='../glium/index/enum.PrimitiveType.html' title='glium::index::PrimitiveType'>PrimitiveType</a>, len: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where F: <a class='trait' href='../glium/backend/trait.Facade.html' title='glium::backend::Facade'>Facade</a></span></code></h4>
+<div class='docblock'><p>Builds a new empty index buffer.</p>
+</div><h4 id='method.empty_dynamic' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.empty_dynamic' class='fnname'>empty_dynamic</a>&lt;F&gt;(facade: &amp;F, prim: <a class='enum' href='../glium/index/enum.PrimitiveType.html' title='glium::index::PrimitiveType'>PrimitiveType</a>, len: <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where F: <a class='trait' href='../glium/backend/trait.Facade.html' title='glium::backend::Facade'>Facade</a></span></code></h4>
+<div class='docblock'><p>Builds a new empty index buffer.</p>
+</div><h4 id='method.get_primitives_type' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_primitives_type' class='fnname'>get_primitives_type</a>(&amp;self) -&gt; <a class='enum' href='../glium/index/enum.PrimitiveType.html' title='glium::index::PrimitiveType'>PrimitiveType</a></code></h4>
+<div class='docblock'><p>Returns the type of primitives associated with this index buffer.</p>
+</div><h4 id='method.get_indices_type' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_indices_type' class='fnname'>get_indices_type</a>(&amp;self) -&gt; <a class='enum' href='../glium/index/enum.IndexType.html' title='glium::index::IndexType'>IndexType</a></code></h4>
+<div class='docblock'><p>Returns the data type of the indices inside this index buffer.</p>
+</div><h4 id='method.slice' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.slice' class='fnname'>slice</a>(&amp;self, range: <a class='struct' href='http://doc.rust-lang.org/nightly/core/ops/struct.Range.html' title='core::ops::Range'>Range</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../glium/index/struct.IndexBufferSlice.html' title='glium::index::IndexBufferSlice'>IndexBufferSlice</a>&lt;T&gt;&gt;</code></h4>
+<div class='docblock'><p>Returns <code>None</code> if out of range.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;T&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a> for <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a></span></code></h3><div class='impl-items'><h4 id='assoc_type.Target' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Target = <a class='struct' href='../glium/buffer/struct.BufferView.html' title='glium::buffer::BufferView'>BufferView</a>&lt;T&gt;</code></h4>
+<h4 id='method.deref' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#method.deref' class='fnname'>deref</a>(&amp;self) -&gt; &amp;<a class='struct' href='../glium/buffer/struct.BufferView.html' title='glium::buffer::BufferView'>BufferView</a>&lt;T&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;T&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a></span></code></h3><div class='impl-items'><h4 id='method.deref_mut' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html#method.deref_mut' class='fnname'>deref_mut</a>(&amp;mut self) -&gt; &amp;mut <a class='struct' href='../glium/buffer/struct.BufferView.html' title='glium::buffer::BufferView'>BufferView</a>&lt;T&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;T&gt; <a class='trait' href='../glium/trait.GlObject.html' title='glium::GlObject'>GlObject</a> for <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a></span></code></h3><div class='impl-items'><h4 id='assoc_type.Id' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Id = GLuint</code></h4>
+<h4 id='method.get_id' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='../glium/trait.GlObject.html#method.get_id' class='fnname'>get_id</a>(&amp;self) -&gt; GLuint</code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;T: <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a>&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../glium/struct.IndexBuffer.html' title='glium::IndexBuffer'>IndexBuffer</a>&lt;T&gt; <span class='where'>where T: <a class='trait' href='../glium/index/trait.Index.html' title='glium::index::Index'>Index</a>, T: <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a></span></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "glium";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>

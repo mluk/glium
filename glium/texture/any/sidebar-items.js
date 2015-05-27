@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TextureAny","A texture whose type isn't fixed at compile-time."]]});

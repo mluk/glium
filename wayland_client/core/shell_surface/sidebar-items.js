@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ShellSurface","A wayland `shell_surface`."]],"enum":[["ShellFullscreenMethod","Different methods of fullscreen for a shell surface."]]});

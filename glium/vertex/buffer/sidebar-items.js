@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["VertexBuffer","A list of vertices loaded in the graphics card's memory."],["VertexBufferAny","A list of vertices loaded in the graphics card's memory."],["VertexBufferSlice","Represents a slice of a `VertexBuffer`."]]});

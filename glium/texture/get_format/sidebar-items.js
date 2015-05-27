@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["InternalFormat","Internal format of a texture."],["InternalFormatType","Format of a component of an internal format."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Program","A combination of shaders linked together."]],"enum":[["ProgramCreationError","Error that can be triggered when creating a `Program`."]]});

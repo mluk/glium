@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="Source to the Rust file `src/buffer/mod.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
+
+    <title>mod.rs.html -- source</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+</pre><pre class='rust '>
+<span class='doccomment'>//! A buffer is a memory location accessible to the video card.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! The purpose of buffers is to serve as a space where the GPU can read from or write data to.</span>
+<span class='doccomment'>//! It can contain a list of vertices, indices, uniform data, etc.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! # Buffers management in glium</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! There are three levels of abstraction in glium:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//!  - A `Buffer` corresponds to an OpenGL buffer object. This type is not public.</span>
+<span class='doccomment'>//!  - A `BufferView` corresponds to a part of a `Buffer`. One buffer can contain one or multiple</span>
+<span class='doccomment'>//!    subbuffers.</span>
+<span class='doccomment'>//!  - The `VertexBuffer`, `IndexBuffer`, `UniformBuffer`, `PixelBuffer`, ... types are</span>
+<span class='doccomment'>//!    abstractions over a subbuffer indicating their specific purpose. They implement `Deref`</span>
+<span class='doccomment'>//!    for the subbuffer. These types are in the `vertex`, `index`, ... modules.</span>
+<span class='doccomment'>//!</span>
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>view</span>::{<span class='ident'>BufferView</span>, <span class='ident'>BufferViewAny</span>, <span class='ident'>BufferViewMutSlice</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>view</span>::{<span class='ident'>BufferViewSlice</span>, <span class='ident'>BufferViewAnySlice</span>, <span class='ident'>Mapping</span>};
+
+<span class='kw'>use</span> <span class='ident'>gl</span>;
+
+<span class='kw'>mod</span> <span class='ident'>alloc</span>;
+<span class='kw'>mod</span> <span class='ident'>view</span>;
+
+<span class='doccomment'>/// Error that can happen when creating a buffer.</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>BufferCreationError</span> {
+    <span class='doccomment'>/// Not enough memory to create the buffer.</span>
+    <span class='ident'>OutOfMemory</span>,
+
+    <span class='doccomment'>/// This type of buffer is not supported.</span>
+    <span class='ident'>BufferTypeNotSupported</span>,
+}
+
+<span class='doccomment'>/// Type of a buffer.</span>
+<span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>BufferType</span> {
+    <span class='ident'>ArrayBuffer</span>,
+    <span class='ident'>PixelPackBuffer</span>,
+    <span class='ident'>PixelUnpackBuffer</span>,
+    <span class='ident'>UniformBuffer</span>,
+    <span class='ident'>CopyReadBuffer</span>,
+    <span class='ident'>CopyWriteBuffer</span>,
+    <span class='ident'>AtomicCounterBuffer</span>,
+    <span class='ident'>DispatchIndirectBuffer</span>,
+    <span class='ident'>DrawIndirectBuffer</span>,
+    <span class='ident'>QueryBuffer</span>,
+    <span class='ident'>ShaderStorageBuffer</span>,
+    <span class='ident'>TextureBuffer</span>,
+    <span class='comment'>//TransformFeedbackBuffer,</span>
+    <span class='ident'>ElementArrayBuffer</span>,
+}
+
+<span class='kw'>impl</span> <span class='ident'>BufferType</span> {
+    <span class='kw'>fn</span> <span class='ident'>to_glenum</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>gl</span>::<span class='ident'>types</span>::<span class='ident'>GLenum</span> {
+        <span class='kw'>match</span> <span class='op'>*</span><span class='self'>self</span> {
+            <span class='ident'>BufferType</span>::<span class='ident'>ArrayBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>ARRAY_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>PixelPackBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>PIXEL_PACK_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>PixelUnpackBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>PIXEL_UNPACK_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>UniformBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>UNIFORM_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>CopyReadBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>COPY_READ_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>CopyWriteBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>COPY_WRITE_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>AtomicCounterBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>ATOMIC_COUNTER_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>DispatchIndirectBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>DISPATCH_INDIRECT_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>DrawIndirectBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>DRAW_INDIRECT_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>QueryBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>QUERY_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>ShaderStorageBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>SHADER_STORAGE_BUFFER</span>,
+            <span class='ident'>BufferType</span>::<span class='ident'>TextureBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>TEXTURE_BUFFER</span>,
+            <span class='comment'>//BufferType::TransformFeedbackBuffer =&gt; gl::TRANSFORM_FEEDBACK_BUFFER,</span>
+            <span class='ident'>BufferType</span>::<span class='ident'>ElementArrayBuffer</span> <span class='op'>=&gt;</span> <span class='ident'>gl</span>::<span class='ident'>ELEMENT_ARRAY_BUFFER</span>,
+        }
+    }
+}
+</pre>
+</section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "glium";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>
